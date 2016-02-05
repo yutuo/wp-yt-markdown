@@ -55,6 +55,13 @@ class WpYtMarkdown
     function insertHeadCss()
     {
         $html = <<<HTML
+<link rel="stylesheet" href="{$this->pluginUrl}/lib/codemirror/codemirror.min.css">
+<link rel="stylesheet" href="{$this->pluginUrl}/lib/codemirror/theme/monokai.css">
+<style type="text/css">
+.CodeMirror {
+  height: auto;
+}
+</style>
 HTML;
         echo $html;
     }
@@ -63,6 +70,19 @@ HTML;
     function insertFootJs()
     {
         $html = <<<HTML
+<script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/codemirror.min.js"></script>
+<script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/modes.min.js"></script>
+<script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/addon/runmode/runmode.js"></script>
+<script type="text/javascript" src="{$this->pluginUrl}/js/ytmarkdown.js"></script>
+<script type="text/javascript">
+(function(){
+    var options = {$this->options_json};
+    jQuery(function(){
+        YtMarkdown.highLightAll(options);
+    });
+})();
+</script>
+        
 HTML;
         echo $html;
     }
