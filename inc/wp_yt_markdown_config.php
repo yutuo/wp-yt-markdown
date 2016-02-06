@@ -1,5 +1,7 @@
 <?php
-class WpYtMarkdownConfig {
+
+class WpYtMarkdownConfig
+{
     /**
      * 保存的KEY
      */
@@ -8,108 +10,96 @@ class WpYtMarkdownConfig {
     /**
      * 显示样式HTML定义
      */
-    static $THEMES_BRIGHT = array (
-            'chrome' => 'Chrome',
-            'clouds' => 'Clouds',
-            'crimson_editor' => 'Crimson Editor',
-            'dawn' => 'Dawn',
-            'dreamweaver' => 'Dreamweaver',
-            'eclipse' => 'Eclipse',
-            'github' => 'GitHub',
-            'solarized_light' => 'Solarized Light',
-            'textmate' => 'TextMate',
-            'tomorrow' => 'Tomorrow',
-            'xcode' => 'XCode',
-            'kuroir' => 'Kuroir',
-            'katzenmilch' => 'KatzenMilch',
-            'ambiance' => 'Ambiance',
-            'chaos' => 'Chaos',
-            'clouds_midnight' => 'Clouds Midnight',
-            'cobalt' => 'Cobalt',
-            'idle_fingers' => 'idle Fingers',
-            'kr_theme' => 'krTheme',
-            'merbivore' => 'Merbivore',
-            'merbivore_soft' => 'Merbivore Soft',
-            'mono_industrial' => 'Mono Industrial',
-            'monokai' => 'Monokai',
-            'pastel_on_dark' => 'Pastel on dark',
-            'solarized_dark' => 'Solarized Dark',
-            'terminal' => 'Terminal',
-            'tomorrow_night' => 'Tomorrow Night',
-            'tomorrow_night_blue' => 'Tomorrow Night Blue',
-            'tomorrow_night_bright' => 'Tomorrow Night Bright',
-            'tomorrow_night_eighties' => 'Tomorrow Night 80s',
-            'twilight' => 'Twilight',
-            'vibrant_ink' => 'Vibrant Ink'
+    static $THEMES = array(
+        'default' => 'default',
+        '3024-day' => '3024-day',
+        '3024-night' => '3024-night',
+        'abcdef' => 'abcdef',
+        'ambiance' => 'ambiance',
+        'base16-dark' => 'base16-dark',
+        'base16-light' => 'base16-light',
+        'bespin' => 'bespin',
+        'blackboard' => 'blackboard',
+        'cobalt' => 'cobalt',
+        'colorforth' => 'colorforth',
+        'dracula' => 'dracula',
+        'eclipse' => 'eclipse',
+        'elegant' => 'elegant',
+        'erlang-dark' => 'erlang-dark',
+        'hopscotch' => 'hopscotch',
+        'icecoder' => 'icecoder',
+        'isotope' => 'isotope',
+        'lesser-dark' => 'lesser-dark',
+        'liquibyte' => 'liquibyte',
+        'material' => 'material',
+        'mbo' => 'mbo',
+        'mdn-like' => 'mdn-like',
+        'midnight' => 'midnight',
+        'monokai' => 'monokai',
+        'neat' => 'neat',
+        'neo' => 'neo',
+        'night' => 'night',
+        'paraiso-dark' => 'paraiso-dark',
+        'paraiso-light' => 'paraiso-light',
+        'pastel-on-dark' => 'pastel-on-dark',
+        'railscasts' => 'railscasts',
+        'rubyblue' => 'rubyblue',
+        'seti' => 'seti',
+        'solarized dark' => 'solarized dark',
+        'solarized light' => 'solarized light',
+        'the-matrix' => 'the-matrix',
+        'tomorrow-night-bright' => 'tomorrow-night-bright',
+        'tomorrow-night-eighties' => 'tomorrow-night-eighties',
+        'ttcn' => 'ttcn',
+        'twilight' => 'twilight',
+        'vibrant-ink' => 'vibrant-ink',
+        'xq-dark' => 'xq-dark',
+        'xq-light' => 'xq-light',
+        'yeti' => 'yeti',
+        'zenburn' => 'zenburn',
     );
     /**
      * 默认设置
      */
-    static $DEFAULT_OPTION = array (
-            'readonly' => true, // 代码只读
-            'theme' => 'monokai', // 显示样式
-            'tabsize' => 4, // Tab宽度
-            'lineheight' => 120, // 行高 %
-            'fontsize' => 12, // 文字大小
-            'wrap' => false, // 自动换行
-            'print' => 80, // 打印边界大小
-            'width' => '99%', // 显示宽度
-            'tabtospace' => true, // Tab转换成空格显示
-            'fold' => false, // 默认收缩
-            'indent' => true, // 缩进边界显示
-            'gutter' => true, // 显示行号
-            'active' => true, // 活动行高亮显示
-            'foldstyle' => 'markbegin' // 代码收缩样式
+    static $DEFAULT_OPTION = array(
+        //'readonly' => true, // 代码只读
+        'theme' => 'monokai', // 显示样式
+        'themeinline' => 'monokai', // 显示样式
+        //'tabsize' => 4, // Tab宽度
+        'lineheight' => 120, // 行高 %
+        'fontsize' => 12, // 文字大小
+        //'wrap' => false, // 自动换行
+        //'print' => 80, // 打印边界大小
+        //'width' => '99%', // 显示宽度
+        //'tabtospace' => true, // Tab转换成空格显示
+        //'fold' => false, // 默认收缩
+        //'indent' => true, // 缩进边界显示
+        //'gutter' => true, // 显示行号
+        //'active' => true, // 活动行高亮显示
+        //'foldstyle' => 'markbegin' // 代码收缩样式
     );
 
     /**
      * 字体数组
      */
-    static $FONT_SIZE = array (
-            '8' => '8',
-            '9' => '9',
-            '10' => '10',
-            '12' => '12',
-            '14' => '14',
-            '16' => '16',
+    static $FONT_SIZE = array(
+        '8' => '8',
+        '9' => '9',
+        '10' => '10',
+        '12' => '12',
+        '14' => '14',
+        '16' => '16',
     );
-    /**
-     * Yes或者No
-     */
-    static $BOOLEAN = array (
-            'true' => 'Yes',
-            'false' => 'No'
-    );
-    /**
-     * Tab宽度
-     */
-    static $TAB_SIZE = array (
-            '2' => '2',
-            '4' => '4',
-            '6' => '6',
-            '8' => '8'
-    );
-    static $PRINT = array (
-            '-1' => 'No display',
-            '80' => '80',
-            '100' => '100',
-            '120' => '120',
-            '160' => '160'
-    );
-    static $LINE_HEIGHT = array (
-            '80' => '80',
-            '90' => '90',
-            '100' => '100',
-            '110' => '110',
-            '120' => '120',
-            '130' => '130',
-            '140' => '140',
-            '150' => '150',
-            '160' => '160'
-    );
-    static $FOLD_STYLE = array (
-            'none' => 'none',
-            'markbegin' => 'begin',
-            'beginend' => 'begin And End'
+
+    static $LINE_HEIGHT = array(
+        '80' => '80',
+        '90' => '90',
+        '100' => '100',
+        '110' => '110',
+        '120' => '120',
+        '130' => '130',
+        '140' => '140',
+        '150' => '150',
+        '160' => '160'
     );
 }

@@ -52,14 +52,27 @@ class WpYtMarkdown
     }
 
     /** 在Wordpress头部添加CSS */
-    function insertHeadCss()
+    function insertHeadHtml()
     {
+        echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/lib/codemirror/codemirror.min.css\">";
+        if ($this->options['theme'] !== 'defualt') {
+            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/lib/codemirror/theme/{$this->options[theme]}.css\">";
+        }
+        if ($this->options['themeinline'] !== 'defualt' && $this->options['themeinline'] !== $this->options['theme']) {
+            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/lib/codemirror/theme/{$this->options[themeinline]}.css\">";
+        }
         $html = <<<HTML
-<link rel="stylesheet" href="{$this->pluginUrl}/lib/codemirror/codemirror.min.css">
-<link rel="stylesheet" href="{$this->pluginUrl}/lib/codemirror/theme/monokai.css">
 <style type="text/css">
 .CodeMirror {
   height: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 12px;
+  line-height: 130%;
+}
+.CodeMirror.cm-inline {
+  display: inline-block;
+  line-height: 150%;
+  padding: 0 5px;
 }
 </style>
 HTML;
@@ -67,7 +80,7 @@ HTML;
     }
 
     /** 在Wordpress尾部添加JavaScript */
-    function insertFootJs()
+    function insertFootHtml()
     {
         $html = <<<HTML
 <script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/codemirror.min.js"></script>
@@ -150,6 +163,24 @@ HTML;
             return $content;
         }
     }
+
+    function optionsHtml($selectValue, $list, $default = false)
+    {
+        $default_txt = __('Default', 'wp_ae');
+        if ($default) {
+            echo "<option value=\"\" selected>{$default_txt}</option>";
+        }
+        foreach ($list as $key => $value) {
+            $selected = '';
+            if (is_bool($selectValue)) {
+                $selectValue = $selectValue ? 'true' : 'false';
+            }
+            if (!$default && $key == $selectValue) {
+                $selected = ' selected';
+            }
+            echo "<option value=\"{$key}\"{$selected}>{$value}</option>";
+        }
+    }
 }
 
 // 禁用富文本
@@ -163,9 +194,9 @@ register_deactivation_hook(__FILE__, array($wpYtMarkdown, 'deActivate'));
 // 初始化
 add_action('init', array($wpYtMarkdown, 'init'));
 // 在Wordpress头部添加CSS
-add_action('wp_head', array($wpYtMarkdown, 'insertHeadCss'));
+add_action('wp_head', array($wpYtMarkdown, 'insertHeadHtml'));
 // 在Wordpress尾部添加JavaScript
-add_action('wp_footer', array($wpYtMarkdown, 'insertFootJs'));
+add_action('wp_footer', array($wpYtMarkdown, 'insertFootHtml'));
 // 管理页面
 add_action('admin_menu', array($wpYtMarkdown, 'menuLink'));
 // 插件链接
