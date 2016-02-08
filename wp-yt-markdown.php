@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: WP Yt Markdown
- * Plugin URI: http://yutuo.net/archives/f685d2dbbb176e86.html
- * Description: This plugin is code syntax highlighter based on <a href="http://ace.ajax.org/">Ace Editor</a> V1.0.3. Supported languages: Bash, C++, CSS, Delphi, Java, JavaScript, Perl, PHP, Python, Ruby, SQL, VB, XML, XHTML and HTML etc.
+ * Plugin URI: https://yutuo.net/archives/4435fbf59f6928c5.html
+ * Description: This plugin is Markdown editor based on <a href="https://pandao.github.io/editor.md/">editor.md</a>.
  * Version: 0.0.1
  * Author: yutuo
  * Author URI: http://yutuo.net
@@ -72,7 +72,8 @@ class WpYtMarkdown
 .CodeMirror.cm-inline {
   display: inline-block;
   line-height: 150%;
-  padding: 0 5px;
+  padding: 0 4px;
+  margin: 0 3px;
   vertical-align: middle;
 }
 </style>
