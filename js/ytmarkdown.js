@@ -21,7 +21,7 @@ var YtMarkdown = {
             var hideItem = $(this);
             var language =　getLangFromClass(hideItem.attr('class'));
 
-            var code = hideItem.html();
+            var code = hideItem.text();
 
             if (hideItem.eq(0).parent().get(0).tagName === 'PRE') {
                 hideItem = hideItem.eq(0).parent();
