@@ -73,6 +73,7 @@ class WpYtMarkdown
   display: inline-block;
   line-height: 150%;
   padding: 0 5px;
+  vertical-align: middle;
 }
 </style>
 HTML;
