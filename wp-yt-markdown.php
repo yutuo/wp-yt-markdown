@@ -54,12 +54,12 @@ class WpYtMarkdown
     /** 在Wordpress头部添加CSS */
     function insertHeadHtml()
     {
-        echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/lib/codemirror/codemirror.min.css\">";
-        if ($this->options['theme'] !== 'defualt') {
-            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/lib/codemirror/theme/{$this->options[theme]}.css\">";
+        echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/codemirror.min.css\">";
+        if ($this->options['theme'] !== 'default') {
+            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/theme/{$this->options[theme]}.css\">";
         }
-        if ($this->options['themeinline'] !== 'defualt' && $this->options['themeinline'] !== $this->options['theme']) {
-            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/lib/codemirror/theme/{$this->options[themeinline]}.css\">";
+        if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
+            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/theme/{$this->options[themeinline]}.css\">";
         }
         $html = <<<HTML
 <style type="text/css">
@@ -68,6 +68,7 @@ class WpYtMarkdown
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
   font-size: 12px;
   line-height: 130%;
+  border-radius: 3px;
 }
 .CodeMirror.cm-inline {
   display: inline-block;
@@ -75,6 +76,7 @@ class WpYtMarkdown
   padding: 0 4px;
   margin: 0 3px;
   vertical-align: middle;
+  font-size: smaller;
 }
 </style>
 HTML;
@@ -85,9 +87,8 @@ HTML;
     function insertFootHtml()
     {
         $html = <<<HTML
-<script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/codemirror.min.js"></script>
-<script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/modes.min.js"></script>
-<script type="text/javascript" src="{$this->pluginUrl}/lib/codemirror/addon/runmode/runmode.js"></script>
+<script type="text/javascript" src="{$this->pluginUrl}/editormd/lib/codemirror/codemirror.min.js"></script>
+<script type="text/javascript" src="{$this->pluginUrl}/editormd/lib/codemirror/modes.min.js"></script>
 <script type="text/javascript" src="{$this->pluginUrl}/js/ytmarkdown.js"></script>
 <script type="text/javascript">
 (function(){
@@ -134,20 +135,6 @@ HTML;
         if ($pagenow == 'post.php' || $pagenow == 'post-new.php') {
             include(dirname(__FILE__) . '/inc/wp_yt_markdown_post.php');
         }
-    }
-
-    /**
-     * 保存处理
-     * @param $post_data
-     * @param $post_arr
-     */
-    function insertPostData($post_data, $post_arr)
-    {
-        if (isset($_POST['mdContent-html-code'])) {
-            $post_data['post_content'] = $_POST['mdContent-html-code'];
-            $post_data['post_content_filtered'] = $_POST['mdContent-markdown-doc'];
-        }
-        return $post_data;
     }
 
     /**
@@ -205,8 +192,6 @@ add_action('admin_menu', array($wpYtMarkdown, 'menuLink'));
 add_action('plugin_action_links', array($wpYtMarkdown, 'actionLink'), 10, 2);
 // 提交画面添加按钮
 add_action('admin_footer', array($wpYtMarkdown, 'addAdminFooter'));
-// 保存数据的处理
-add_filter('wp_insert_post_data', array($wpYtMarkdown, 'insertPostData'), 10, 2);
 // 修改处理
 add_filter('edit_post_content', array($wpYtMarkdown, 'editPostContent'), 10, 2);
 

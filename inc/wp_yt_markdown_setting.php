@@ -33,25 +33,25 @@ if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
             <table class="form-table">
                 <tr>
                     <th scope="row"><?php echo __('Code theme inline', 'wp_ae') ?>(theme)</th>
-                    <td><select name="wp_ae_options[themeinline]" id="themeinline">
+                    <td><select name="wp_ymd_options[themeinline]" id="themeinline">
                             <?php $this->optionsHtml($this->options['themeinline'], WpYtMarkdownConfig::$THEMES)?>
                         </select></td>
                 </tr>
                 <tr>
                     <th scope="row"><?php echo __('Code theme', 'wp_ae') ?>(theme)</th>
-                    <td><select name="wp_ae_options[theme]" id="theme">
+                    <td><select name="wp_ymd_options[theme]" id="theme">
                             <?php $this->optionsHtml($this->options['theme'], WpYtMarkdownConfig::$THEMES)?>
                     </select></td>
                 </tr>
                 <tr>
                     <th scope="row"><?php echo __('Line height', 'wp_ae') ?>(lineheight)</th>
-                    <td><select name="wp_ae_options[lineheight]" id="lineheight">
+                    <td><select name="wp_ymd_options[lineheight]" id="lineheight">
                             <?php $this->optionsHtml($this->options['lineheight'], WpYtMarkdownConfig::$LINE_HEIGHT)?>
                         </select>%</td>
                 </tr>
                 <tr>
                     <th scope="row"><?php echo __('Font size', 'wp_ae') ?>(fontsize)</th>
-                    <td><select name="wp_ae_options[fontsize]" id="fontsize">
+                    <td><select name="wp_ymd_options[fontsize]" id="fontsize">
                             <?php $this->optionsHtml($this->options['fontsize'], WpYtMarkdownConfig::$FONT_SIZE)?>
                         </select>px</td>
                 </tr>

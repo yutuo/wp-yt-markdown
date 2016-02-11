@@ -39,7 +39,7 @@ var YtMarkdown = {
                 });
 
             } else {
-                var divItem = $('<div class="CodeMirror cm-inline cm-s-monokai"></div>');
+                var divItem = $('<div class="CodeMirror cm-inline cm-s-' + options.themeinline + '"></div>');
                 hideItem.after(divItem);
                 hideItem.hide();
                 divItem.show();
