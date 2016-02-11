@@ -746,6 +746,7 @@
   background: inherit;
   margin: 0;
   line-height: inherit;
+  overflow: hidden;
 }
 
 .editormd .editormd-preview .CodeMirror .CodeMirror-linenumbers {

@@ -21,7 +21,8 @@
             markdown: content,
             name: "post_content_filtered",
             htmlCodeName: "post_content",
-            saveHTMLToTextarea: true
+            saveHTMLToTextarea: true,
+			htmlDecode: true
         });
     });
 </script>

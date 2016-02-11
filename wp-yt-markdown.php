@@ -67,8 +67,7 @@ class WpYtMarkdown
   height: auto;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
   font-size: 12px;
-  line-height: 130%;
-  border-radius: 3px;
+  line-height: 130%;  
 }
 .CodeMirror.cm-inline {
   display: inline-block;
@@ -77,6 +76,7 @@ class WpYtMarkdown
   margin: 0 3px;
   vertical-align: middle;
   font-size: smaller;
+  border-radius: 3px;
 }
 </style>
 HTML;
