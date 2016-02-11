@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="<?php echo $this->pluginUrl ?>/css/editormd.css"/>
+<link rel="stylesheet" href="<?php echo $this->pluginUrl ?>/editormd/css/editormd.min.css"/>
 <script type="text/javascript"
-        src="<?php echo $this->pluginUrl ?>/js/editormd.js"></script>
+        src="<?php echo $this->pluginUrl ?>/editormd/editormd.min.js"></script>
 <script type="text/javascript">
     jQuery(function () {
         var $ = jQuery;
@@ -17,8 +17,10 @@
         editormd("mdContent", {
             width: "100%",
             height: 700,
-            path: "<?php echo $this->pluginUrl ?>/lib/",
+            path: "<?php echo $this->pluginUrl ?>/editormd/lib/",
             markdown: content,
+            name: "post_content_filtered",
+            htmlCodeName: "post_content",
             saveHTMLToTextarea: true
         });
     });
