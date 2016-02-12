@@ -22,7 +22,7 @@
             name: "post_content_filtered",
             htmlCodeName: "post_content",
             saveHTMLToTextarea: true,
-			htmlDecode: true
+            htmlDecode: true
         });
     });
 </script>

@@ -753,6 +753,10 @@
   padding: 0;
 }
 
+.editormd .editormd-preview .CodeMirror .CodeMirror-hscrollbar {
+  background-color: #E6E6E6;
+}
+
 .editormd .editormd-preview .CodeMirror.cm-inline {
   display: inline-block;
   line-height: 150%;
