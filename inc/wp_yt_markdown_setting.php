@@ -1,5 +1,5 @@
 <?php
-
+if (!defined('ABSPATH')) exit;
 
 if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
     $postOptions = $_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY];
