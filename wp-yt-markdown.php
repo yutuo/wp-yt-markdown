@@ -56,7 +56,6 @@ class WpYtMarkdown
     /** 在Wordpress头部添加CSS */
     function insertHeadHtml()
     {
-
         echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/codemirror.min.css\">";
         if ($this->options['theme'] !== 'default') {
             echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/theme/{$this->options[theme]}.css\">";

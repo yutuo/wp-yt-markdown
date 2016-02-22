@@ -3213,16 +3213,17 @@
 .editormd-preview-container .CodeMirror .CodeMirror-hscrollbar, .editormd-html-preview .CodeMirror .CodeMirror-hscrollbar {
   background-color: #E6E6E6;
 }
-.editormd-preview-container .CodeMirror .cm-inline, .editormd-html-preview .CodeMirror .cm-inline {
+.editormd-preview-container .CodeMirror ::-webkit-scrollbar, .editormd-html-preview .CodeMirror ::-webkit-scrollbar {
+  height: 7px;
+}
+.editormd-preview-container .CodeMirror.cm-inline, .editormd-html-preview .CodeMirror.cm-inline {
   display: inline-block;
   line-height: 150%;
   padding: 0 4px;
   margin: 0 3px;
   vertical-align: middle;
   width: inherit;
-}
-.editormd-preview-container .CodeMirror ::-webkit-scrollbar, .editormd-html-preview .CodeMirror ::-webkit-scrollbar {
-  height: 7px;
+  border-radius: 3px;
 }
 
 .editormd-preview-container pre.prettyprint, .editormd-html-preview pre.prettyprint {
