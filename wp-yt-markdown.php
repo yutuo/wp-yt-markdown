@@ -50,35 +50,39 @@ class WpYtMarkdown
     function init()
     {
         load_plugin_textdomain('wp_ytm', false, $this->pluginPath . '/lang');
-        wp_enqueue_script("jquery");
+        wp_enqueue_script('jquery');
+        if (is_admin()) {
+            wp_enqueue_script('editor.md', $this->pluginUrl . '/editormd/editormd.min.js', array('jquery'));
+            wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'editor.md'));
+
+            wp_enqueue_style('editor.md', $this->pluginUrl . '/editormd/css/editormd.min.css');
+        } else {
+            wp_enqueue_script('codemirror', $this->pluginUrl . '/editormd/lib/codemirror/codemirror.min.js', array('jquery'));
+            wp_enqueue_script('wp-yt-markdown', $this->pluginUrl . '/js/wp-yt-markdown.js', array('jquery', 'codemirror'));
+
+            wp_enqueue_style('codemirror', $this->pluginUrl . '/editormd/lib/codemirror/codemirror.min.css');
+            if ($this->options['theme'] !== 'default') {
+                wp_enqueue_style('codemirror-theme', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['theme'] . '.css');
+            }
+            if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
+                wp_enqueue_style('codemirror-inline', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['themeinline'] . '.css');
+            }
+            wp_enqueue_style('wp-yt-markdown', $this->pluginUrl . '/css/wp-yt-markdown.css');
+        }
     }
 
     /** 在Wordpress头部添加CSS */
     function insertHeadHtml()
     {
-        echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/codemirror.min.css\">";
-        if ($this->options['theme'] !== 'default') {
-            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/theme/{$this->options[theme]}.css\">";
-        }
-        if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
-            echo "<link rel=\"stylesheet\" href=\"{$this->pluginUrl}/editormd/lib/codemirror/theme/{$this->options[themeinline]}.css\">";
-        }
         $html = <<<HTML
 <style type="text/css">
 .CodeMirror {
-  height: auto;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-  font-size: 12px;
-  line-height: 130%;  
+  font-size: {$this->options[fontsize]}px;
+  line-height: {$this->options[lineheight]}%;
 }
 .CodeMirror.cm-inline {
-  display: inline-block;
-  line-height: 150%;
-  padding: 0 4px;
-  margin: 0 3px;
-  vertical-align: middle;
-  font-size: smaller;
-  border-radius: 3px;
+  font-size: {$this->options[fontsizeinline]}px;
+  line-height: {$this->options[lineheightinline]}%;
 }
 </style>
 HTML;
@@ -89,18 +93,12 @@ HTML;
     function insertFootHtml()
     {
         $html = <<<HTML
-<script type="text/javascript" src="{$this->pluginUrl}/editormd/lib/codemirror/codemirror.min.js"></script>
-<script type="text/javascript" src="{$this->pluginUrl}/editormd/lib/codemirror/modes.min.js"></script>
-<script type="text/javascript" src="{$this->pluginUrl}/js/ytmarkdown.js"></script>
 <script type="text/javascript">
-(function(){
-    var options = {$this->options_json};
-    jQuery(function(){
-        YtMarkdown.highLightAll(options);
-    });
-})();
+var wpYtMarkdownOptions = {
+    cmModeUrl: "{$this->pluginUrl}/editormd/lib/codemirror/mode/%N/%N.js",
+    highLight: {$this->options_json}
+}
 </script>
-        
 HTML;
         echo $html;
     }
@@ -135,7 +133,15 @@ HTML;
     {
         global $pagenow;
         if ($pagenow == 'post.php' || $pagenow == 'post-new.php') {
-            include(dirname(__FILE__) . '/inc/wp_yt_markdown_post.php');
+            $html = <<<HTML
+<script type="text/javascript">
+var wpYtMarkdownOptions = {
+    cmLibUrl: "{$this->pluginUrl}/editormd/lib/",
+    highLight: {$this->options_json}
+}
+</script>
+HTML;
+            echo $html;
         }
     }
 

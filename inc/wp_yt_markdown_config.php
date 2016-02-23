@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('ABSPATH')) exit;
 
 class WpYtMarkdownConfig
@@ -60,25 +59,17 @@ class WpYtMarkdownConfig
         'yeti' => 'yeti',
         'zenburn' => 'zenburn',
     );
+
     /**
      * 默认设置
      */
     static $DEFAULT_OPTION = array(
-        //'readonly' => true, // 代码只读
         'theme' => 'monokai', // 显示样式
+        'lineheight' => '130', // 行高 %
+        'fontsize' => '13', // 文字大小
         'themeinline' => 'monokai', // 显示样式
-        //'tabsize' => 4, // Tab宽度
-        'lineheight' => 120, // 行高 %
-        'fontsize' => 12, // 文字大小
-        //'wrap' => false, // 自动换行
-        //'print' => 80, // 打印边界大小
-        //'width' => '99%', // 显示宽度
-        //'tabtospace' => true, // Tab转换成空格显示
-        //'fold' => false, // 默认收缩
-        //'indent' => true, // 缩进边界显示
-        //'gutter' => true, // 显示行号
-        //'active' => true, // 活动行高亮显示
-        //'foldstyle' => 'markbegin' // 代码收缩样式
+        'lineheightinline' => '140', // 显示样式
+        'fontsizeinline' => '13', // 显示样式
     );
 
     /**
@@ -88,8 +79,11 @@ class WpYtMarkdownConfig
         '8' => '8',
         '9' => '9',
         '10' => '10',
+        '11' => '11',
         '12' => '12',
+        '13' => '13',
         '14' => '14',
+        '15' => '15',
         '16' => '16',
     );
 
