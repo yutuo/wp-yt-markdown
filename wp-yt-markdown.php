@@ -3,7 +3,7 @@
  * Plugin Name: WP Yt Markdown
  * Plugin URI: https://yutuo.net/archives/4435fbf59f6928c5.html
  * Description: This plugin is Markdown editor based on <a href="https://pandao.github.io/editor.md/">editor.md</a>.
- * Version: 0.0.1
+ * Version: 0.0.3
  * Author: yutuo
  * Author URI: http://yutuo.net
  * Text Domain: wp_ymd

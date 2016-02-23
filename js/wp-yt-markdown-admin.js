@@ -27,7 +27,7 @@ var YtMarkdown = {
 };
 
 jQuery(function () {
-    if (wpYtMarkdownOptions) {
+    if (typeof wpYtMarkdownOptions != 'undefined') {
         YtMarkdown.conventToMarkdown(wpYtMarkdownOptions);
     }
 });

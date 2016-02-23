@@ -60,7 +60,7 @@ var YtMarkdown = {
 }
 
 jQuery(function () {
-    if (wpYtMarkdownOptions) {
+    if (typeof wpYtMarkdownOptions != 'undefined') {
         CodeMirror.modeURL = wpYtMarkdownOptions.cmModeUrl;
         var options = wpYtMarkdownOptions.highLight;
         options.autoLoadMode = true;

@@ -11,7 +11,7 @@ class WpYtMarkdownConfig
     /**
      * 显示样式HTML定义
      */
-    static $THEMES = array(
+    public static $THEMES = array(
         'default' => 'default',
         '3024-day' => '3024-day',
         '3024-night' => '3024-night',
@@ -61,21 +61,9 @@ class WpYtMarkdownConfig
     );
 
     /**
-     * 默认设置
-     */
-    static $DEFAULT_OPTION = array(
-        'theme' => 'monokai', // 显示样式
-        'lineheight' => '130', // 行高 %
-        'fontsize' => '13', // 文字大小
-        'themeinline' => 'monokai', // 显示样式
-        'lineheightinline' => '140', // 显示样式
-        'fontsizeinline' => '13', // 显示样式
-    );
-
-    /**
      * 字体数组
      */
-    static $FONT_SIZE = array(
+    public static $FONT_SIZE = array(
         '8' => '8',
         '9' => '9',
         '10' => '10',
@@ -87,7 +75,7 @@ class WpYtMarkdownConfig
         '16' => '16',
     );
 
-    static $LINE_HEIGHT = array(
+    public static $LINE_HEIGHT = array(
         '80' => '80',
         '90' => '90',
         '100' => '100',
@@ -98,4 +86,31 @@ class WpYtMarkdownConfig
         '150' => '150',
         '160' => '160'
     );
+
+    /**
+     * 默认设置
+     */
+    public static $DEFAULT_OPTION = array(
+        'theme' => 'monokai', // 显示样式
+        'lineheight' => '130', // 行高 %
+        'fontsize' => '13', // 文字大小
+        'themeinline' => 'monokai', // 显示样式
+        'lineheightinline' => '140', // 显示样式
+        'fontsizeinline' => '13', // 显示样式
+    );
+
+    /**
+     * 设置值验证用
+     * @return array
+     */
+    public static function getCheckInfos() {
+        return array(
+            'theme' => array_keys(self::$THEMES),
+            'lineheight' => array_keys(self::$LINE_HEIGHT),
+            'fontsize' => array_keys(self::$FONT_SIZE),
+            'themeinline' => array_keys(self::$THEMES),
+            'lineheightinline' => array_keys(self::$LINE_HEIGHT),
+            'fontsizeinline' => array_keys(self::$FONT_SIZE)
+        );
+    }
 }

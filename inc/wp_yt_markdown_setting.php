@@ -3,7 +3,16 @@ if (!defined('ABSPATH')) exit;
 
 if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
     $postOptions = $_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY];
-    $this->options = array_merge($this->options, $postOptions);
+    $checkedOptions = array();
+    $checkOptionsInfo = WpYtMarkdownConfig::getCheckInfos();
+    foreach ($checkOptionsInfo as $key => $value) {
+        if (array_key_exists($key, $postOptions) && in_array($postOptions[$key], $value)) {
+            $checkedOptions[$key] = $postOptions[$key];
+        } else {
+            $checkedOptions[$key] = WpYtMarkdownConfig::$DEFAULT_OPTION[$key];
+        }
+    }
+    $this->options = $checkedOptions;
     update_option(WpYtMarkdownConfig::CONFIG_OPTIONS_KEY, $this->options);
 }
 ?>
@@ -20,19 +29,19 @@ if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
 
             <table class="form-table">
                 <tr>
-                    <th scope="row"><?php echo __('Code theme', 'wp_ytm') ?></th>
+                    <td scope="row"><?php echo __('Code theme', 'wp_ytm') ?></td>
                     <td><select name="wp_ymd_options[theme]" id="theme">
                             <?php $this->optionsHtml($this->options['theme'], WpYtMarkdownConfig::$THEMES)?>
                     </select></td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php echo __('Line height', 'wp_ytm') ?></th>
+                    <td scope="row"><?php echo __('Line height', 'wp_ytm') ?></td>
                     <td><select name="wp_ymd_options[lineheight]" id="lineheight">
                             <?php $this->optionsHtml($this->options['lineheight'], WpYtMarkdownConfig::$LINE_HEIGHT)?>
                         </select>%</td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php echo __('Font size', 'wp_ytm') ?></th>
+                    <td scope="row"><?php echo __('Font size', 'wp_ytm') ?></td>
                     <td><select name="wp_ymd_options[fontsize]" id="fontsize">
                             <?php $this->optionsHtml($this->options['fontsize'], WpYtMarkdownConfig::$FONT_SIZE)?>
                         </select>px</td>
@@ -43,19 +52,19 @@ if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
 
             <table class="form-table">
                 <tr>
-                    <th scope="row"><?php echo __('Code theme', 'wp_ytm') ?></th>
+                    <td scope="row"><?php echo __('Code theme', 'wp_ytm') ?></td>
                     <td><select name="wp_ymd_options[themeinline]" id="themeinline">
                             <?php $this->optionsHtml($this->options['themeinline'], WpYtMarkdownConfig::$THEMES)?>
                         </select></td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php echo __('Line height', 'wp_ytm') ?></th>
+                    <td scope="row"><?php echo __('Line height', 'wp_ytm') ?></td>
                     <td><select name="wp_ymd_options[lineheightinline]" id="lineheightinline">
                             <?php $this->optionsHtml($this->options['lineheightinline'], WpYtMarkdownConfig::$LINE_HEIGHT)?>
                         </select>%</td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php echo __('Font size', 'wp_ytm') ?></th>
+                    <td scope="row"><?php echo __('Font size', 'wp_ytm') ?></td>
                     <td><select name="wp_ymd_options[fontsizeinline]" id="fontsizeinline">
                             <?php $this->optionsHtml($this->options['fontsizeinline'], WpYtMarkdownConfig::$FONT_SIZE)?>
                         </select>px</td>
