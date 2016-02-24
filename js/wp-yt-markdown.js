@@ -30,7 +30,7 @@ var YtMarkdown = {
 
                 var editor = new CodeMirror(divItem.get(0), {
                     value: code,
-                    mode: langMode.mode,
+                    mode: langMode.mime,
                     theme: options.theme,
                     lineNumbers: true,
                     readOnly: true,
@@ -42,17 +42,16 @@ var YtMarkdown = {
             } else {
                 divItem = $("<div class=\"CodeMirror cm-inline cm-s-" + options.themeinline + "\"></div>");
                 hideItem.after(divItem);
+                hideItem.hide();
+                divItem.show();
+
                 if (options.autoLoadMode) {
                     CodeMirror.requireMode(langMode.mode, function () {
-                        hideItem.hide();
-                        divItem.show();
-                        CodeMirror.runMode(code, langMode.mode, divItem.get(0));
+                        CodeMirror.runMode(code, langMode.mime, divItem.get(0));
                     });
                 }
                 else {
-                    hideItem.hide();
-                    divItem.show();
-                    CodeMirror.runMode(code, langMode.mode, divItem.get(0));
+                    CodeMirror.runMode(code, langMode.mime, divItem.get(0));
                 }
             }
         });
