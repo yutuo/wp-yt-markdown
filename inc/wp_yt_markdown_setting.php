@@ -3,11 +3,16 @@ if (!defined('ABSPATH')) exit;
 
 if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
     $postOptions = $_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY];
+    $safePostOptions = array();;
+    foreach ($postOptions as $key => $value) {
+        $safePostOptions[sanitize_text_field($key)] = sanitize_text_field($value);
+    }
+
     $checkedOptions = array();
     $checkOptionsInfo = WpYtMarkdownConfig::getCheckInfos();
     foreach ($checkOptionsInfo as $key => $value) {
-        if (array_key_exists($key, $postOptions) && in_array($postOptions[$key], $value)) {
-            $checkedOptions[$key] = $postOptions[$key];
+        if (array_key_exists($key, $safePostOptions) && in_array($safePostOptions[$key], $value)) {
+            $checkedOptions[$key] = sanitize_text_field($safePostOptions[$key]);
         } else {
             $checkedOptions[$key] = WpYtMarkdownConfig::$DEFAULT_OPTION[$key];
         }
