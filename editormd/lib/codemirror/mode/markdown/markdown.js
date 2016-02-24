@@ -18,7 +18,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   function getMode(name) {
     if (CodeMirror.findModeByName) {
-      var found = CodeMirror.findModeByName(name);
+      var found = CodeMirror.findModeByName(name) || CodeMirror.findModeByExtension(name);
       if (found) name = found.mime || found.mimes[0];
     }
     var mode = CodeMirror.getMode(cmCfg, name);
