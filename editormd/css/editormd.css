@@ -3937,12 +3937,14 @@
 }
 .editormd-preview-container .CodeMirror.cm-inline, .editormd-html-preview .CodeMirror.cm-inline {
   display: inline-block;
-  line-height: 150%;
+  line-height: 130%;
   padding: 0 4px;
   margin: 0 3px;
   vertical-align: middle;
   width: inherit;
   border-radius: 3px;
+  border: 1px solid #FCA29D;
+  font-size: small;
 }
 
 .editormd-preview-container pre.prettyprint, .editormd-html-preview pre.prettyprint {

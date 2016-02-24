@@ -46,8 +46,6 @@ class WpYtMarkdownConfig
         'railscasts' => 'railscasts',
         'rubyblue' => 'rubyblue',
         'seti' => 'seti',
-        'solarized dark' => 'solarized dark',
-        'solarized light' => 'solarized light',
         'the-matrix' => 'the-matrix',
         'tomorrow-night-bright' => 'tomorrow-night-bright',
         'tomorrow-night-eighties' => 'tomorrow-night-eighties',

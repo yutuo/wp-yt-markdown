@@ -20,8 +20,10 @@ var YtMarkdown = {
             htmlCodeName: "post_content",
             saveHTMLToTextarea: true,
             htmlDecode: true,
-            theme: options.theme,
-            themeinline: options.themeinline
+            highlightConfig: {
+                theme: options.highLight.theme,
+                themeinline: options.highLight.themeinline
+            }
         });
     }
 };
