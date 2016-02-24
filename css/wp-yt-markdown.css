@@ -1,0 +1,11 @@
+.CodeMirror {
+    height: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
+.CodeMirror.cm-inline {
+    display: inline-block;
+    padding: 0 4px;
+    margin: 0 3px;
+    vertical-align: middle;
+    border-radius: 3px;
+}

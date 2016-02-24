@@ -7,7 +7,6 @@
  * @license     MIT License
  * @author      Pandao
  * {@link       https://github.com/pandao/editor.md}
- * @updateTime  2015-06-09
  */
 
 @charset "UTF-8";
@@ -547,7 +546,7 @@
 .editormd-form iframe {
   display: none;
 }
-.editormd-form input, .editormd-form select{
+.editormd-form input, .editormd-form select {
   margin: 0;
 }
 .editormd-form input:focus {
@@ -729,40 +728,6 @@
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
   background-position: right;
   background-repeat: no-repeat;
-}
-.editormd .editormd-preview .CodeMirror {
-  height: auto;
-  line-height: 130%;
-  float: inherit;
-  width: 100%;
-  border: 0;
-  margin: 0 0 16px 0;
-  vertical-align: inherit;
-}
-
-.editormd .editormd-preview .CodeMirror pre {
-  padding: 0 0 0 7px;
-  border: 0;
-  background: inherit;
-  margin: 0;
-  line-height: inherit;
-}
-
-.editormd .editormd-preview .CodeMirror .CodeMirror-linenumbers {
-  padding: 0;
-}
-
-.editormd .editormd-preview .CodeMirror.cm-inline {
-  display: inline-block;
-  line-height: 150%;
-  padding: 0 4px;
-  margin: 0 3px;
-  vertical-align: middle;
-  width: inherit;
-}
-
-.editormd .editormd-preview .CodeMirror ::-webkit-scrollbar {
-  height: 7px;
 }
 
 /*! prefixes.scss v0.1.0 | Author: Pandao | https://github.com/pandao/prefixes.scss | MIT license | Copyright (c) 2015 */
@@ -3944,139 +3909,42 @@
   font-size: 15px !important;
   font-family: "YaHei Consolas Hybrid", Consolas, "Microsoft YaHei", "Malgun Gothic", "Segoe UI", Helvetica, Arial !important;
 }
-
-/*! Pretty printing styles. Used with prettify.js. */
-/* SPAN elements with the classes below are added by prettyprint. */
-.pln {
-  color: #000;
+.editormd-preview-container .CodeMirror, .editormd-html-preview .CodeMirror {
+  height: auto;
+  line-height: 130%;
+  float: inherit;
+  width: 100%;
+  border: 0;
+  margin: 0 0 16px 0;
+  vertical-align: inherit;
 }
-
-/* plain text */
-@media screen {
-  .str {
-    color: #080;
-  }
-
-  /* string content */
-  .kwd {
-    color: #008;
-  }
-
-  /* a keyword */
-  .com {
-    color: #800;
-  }
-
-  /* a comment */
-  .typ {
-    color: #606;
-  }
-
-  /* a type name */
-  .lit {
-    color: #066;
-  }
-
-  /* a literal value */
-  /* punctuation, lisp open bracket, lisp close bracket */
-  .pun, .opn, .clo {
-    color: #660;
-  }
-
-  .tag {
-    color: #008;
-  }
-
-  /* a markup tag name */
-  .atn {
-    color: #606;
-  }
-
-  /* a markup attribute name */
-  .atv {
-    color: #080;
-  }
-
-  /* a markup attribute value */
-  .dec, .var {
-    color: #606;
-  }
-
-  /* a declaration; a variable name */
-  .fun {
-    color: red;
-  }
-
-  /* a function name */
+.editormd-preview-container .CodeMirror pre, .editormd-html-preview .CodeMirror pre {
+  padding: 0 0 0 7px;
+  border: 0;
+  background: inherit;
+  margin: 0;
+  line-height: inherit;
+  overflow: hidden;
 }
-/* Use higher contrast and text-weight for printable form. */
-@media print, projection {
-  .str {
-    color: #060;
-  }
-
-  .kwd {
-    color: #006;
-    font-weight: bold;
-  }
-
-  .com {
-    color: #600;
-    font-style: italic;
-  }
-
-  .typ {
-    color: #404;
-    font-weight: bold;
-  }
-
-  .lit {
-    color: #044;
-  }
-
-  .pun, .opn, .clo {
-    color: #440;
-  }
-
-  .tag {
-    color: #006;
-    font-weight: bold;
-  }
-
-  .atn {
-    color: #404;
-  }
-
-  .atv {
-    color: #060;
-  }
+.editormd-preview-container .CodeMirror .CodeMirror-linenumbers, .editormd-html-preview .CodeMirror .CodeMirror-linenumbers {
+  padding: 0;
 }
-
-/* Specify class=linenums on a pre to get line numbering */
-ol.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
+.editormd-preview-container .CodeMirror .CodeMirror-hscrollbar, .editormd-html-preview .CodeMirror .CodeMirror-hscrollbar {
+  background-color: #E6E6E6;
 }
-
-/* IE indents via margin-left */
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none;
+.editormd-preview-container .CodeMirror ::-webkit-scrollbar, .editormd-html-preview .CodeMirror ::-webkit-scrollbar {
+  height: 7px;
 }
-
-/* Alternate shading for lines */
-li.L1,
-li.L3,
-li.L5,
-li.L7,
-li.L9 {
-  background: #eee;
+.editormd-preview-container .CodeMirror.cm-inline, .editormd-html-preview .CodeMirror.cm-inline {
+  display: inline-block;
+  line-height: 130%;
+  padding: 0 4px;
+  margin: 0 3px;
+  vertical-align: middle;
+  width: inherit;
+  border-radius: 3px;
+  border: 1px solid #FCA29D;
+  font-size: small;
 }
 
 .editormd-preview-container pre.prettyprint, .editormd-html-preview pre.prettyprint {
