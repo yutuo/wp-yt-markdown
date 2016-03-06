@@ -7,7 +7,7 @@
  * Author: yutuo
  * Author URI: http://yutuo.net
  * Text Domain: wp_ymd
- * Domain Path: /wp_ymd
+ * Domain Path: /lang/
  * License: GPL v3 - http://www.gnu.org/licenses/gpl.html
  */
 
@@ -49,7 +49,8 @@ class WpYtMarkdown
     /** 初始化 */
     function init()
     {
-        load_plugin_textdomain('wp_ytm', false, $this->pluginPath . '/lang');
+        load_plugin_textdomain('wp_ymd', false, plugin_basename(dirname(__FILE__)) . '/lang');
+
         wp_enqueue_script('jquery');
         if (is_admin()) {
             wp_enqueue_script('editor.md', $this->pluginUrl . '/editormd/editormd.min.js', array('jquery'));
@@ -163,7 +164,7 @@ HTML;
 
     function optionsHtml($selectValue, $list, $default = false)
     {
-        $default_txt = __('Default', 'wp_ae');
+        $default_txt = __('Default', 'wp_ymd');
         if ($default) {
             echo "<option value=\"\" selected>{$default_txt}</option>";
         }

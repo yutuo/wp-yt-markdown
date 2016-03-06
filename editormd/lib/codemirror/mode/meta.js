@@ -98,7 +98,7 @@
     {name: "PEG.js", mime: "null", mode: "pegjs", ext: ["jsonld"]},
     {name: "Perl", mime: "text/x-perl", mode: "perl", ext: ["pl", "pm"]},
     {name: "PHP", mime: "application/x-httpd-php", mode: "php", ext: ["php", "php3", "php4", "php5", "phtml"]},
-    {name: "PHP Plain", mime: "application/x-httpd-php-open", mode: "php", ext: [], alias:["phpplain", "phpcode", "phptext"]},
+    {name: "PHP Script", mime: "application/x-httpd-php-open", mode: "php", ext: [], alias:["phpscript", "phpcode", "phps"]},
     {name: "Pig", mime: "text/x-pig", mode: "pig", ext: ["pig"]},
     {name: "Plain Text", mime: "text/plain", mode: "null", ext: ["txt", "text", "conf", "def", "list", "log"]},
     {name: "PLSQL", mime: "text/x-plsql", mode: "sql", ext: ["pls"]},
