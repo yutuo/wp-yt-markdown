@@ -294,6 +294,13 @@
   border: 1px solid #ddd;
   line-height: inherit;
 }
+.editormd-dialog-container input {
+  width: 100%;
+  color: #999;
+  padding: 3px 8px;
+  border: 1px solid #ddd;
+  line-height: inherit;
+}
 
 .editormd-dialog-close {
   position: absolute;
