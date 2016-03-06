@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Yt Markdown\n"
+"POT-Creation-Date: 2016-03-06 23:56+0900\n"
+"PO-Revision-Date: 2016-03-07 00:06+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: wp-yt-markdown.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: inc/wp_yt_markdown_setting.php:26 wp-yt-markdown.php:110
+msgid "Wp Yt Markdown"
+msgstr ""
+
+#: inc/wp_yt_markdown_setting.php:29
+msgid ""
+"Wp Yt Markdown is a plugin what can edit your post as markdown, and "
+"highLight code in page."
+msgstr "Wp Yt Markdown是一个文章的Markdown编辑器插件，它也可以用于代码高亮。"
+
+#: inc/wp_yt_markdown_setting.php:30
+msgid "System Settings"
+msgstr "系统设置"
+
+#: inc/wp_yt_markdown_setting.php:31
+msgid "Please enter your system config."
+msgstr "请输入你的系统设置。"
+
+#: inc/wp_yt_markdown_setting.php:33
+msgid "Block Code HighLight Setting"
+msgstr "块代码高亮设置"
+
+#: inc/wp_yt_markdown_setting.php:37 inc/wp_yt_markdown_setting.php:60
+msgid "Code theme"
+msgstr "代码样式"
+
+#: inc/wp_yt_markdown_setting.php:43 inc/wp_yt_markdown_setting.php:66
+msgid "Line height"
+msgstr "行高"
+
+#: inc/wp_yt_markdown_setting.php:49 inc/wp_yt_markdown_setting.php:72
+msgid "Font size"
+msgstr "字体大小"
+
+#: inc/wp_yt_markdown_setting.php:56
+msgid "Inline Code HighLight Setting"
+msgstr "单行代码高亮样式"
+
+#: inc/wp_yt_markdown_setting.php:81
+msgid "Save Changes"
+msgstr "保存修改"
+
+#: wp-yt-markdown.php:120
+msgid "Settings"
+msgstr "设置"
+
+#: wp-yt-markdown.php:167
+msgid "Default"
+msgstr "默认"
+
+#. Plugin Name of the plugin/theme
+msgid "WP Yt Markdown"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://yutuo.net/archives/4435fbf59f6928c5.html"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin is Markdown editor based on <a href=\"https://pandao.github.io/"
+"editor.md/\">editor.md</a>."
+msgstr ""
+"这个插件是一个基于<a href=\"https://pandao.github.io/editor.md/\">editor."
+"md</a>开发的Markdown编辑器."
+
+#. Author of the plugin/theme
+msgid "yutuo"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://yutuo.net"
+msgstr ""
