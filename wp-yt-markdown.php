@@ -142,6 +142,12 @@ HTML;
         global $pagenow;
         if ($pagenow == 'post.php' || $pagenow == 'post-new.php') {
             $html = <<<HTML
+<style type="text/css">
+pre.hljs code {
+    margin: initial;
+    padding: initial;
+}
+</style>
 <script type="text/javascript">
 var wpYtMarkdownOptions = {
     highLight: {$this->options_json}
