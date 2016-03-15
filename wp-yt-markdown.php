@@ -53,22 +53,30 @@ class WpYtMarkdown
 
         wp_enqueue_script('jquery');
         if (is_admin()) {
-            wp_enqueue_script('editor.md', $this->pluginUrl . '/editormd/editormd.min.js', array('jquery'));
-            wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'editor.md'));
+            wp_enqueue_script('codemirror', $this->pluginUrl . '/mdeditoryt/lib/codemirror/codemirror.min.js');
+            wp_enqueue_style('codemirror', $this->pluginUrl . '/mdeditoryt/lib/codemirror/codemirror.min.css');
 
-            wp_enqueue_style('editor.md', $this->pluginUrl . '/editormd/css/editormd.min.css');
+            wp_enqueue_script('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.js');
+            wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
+
+            wp_enqueue_script('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/highlight.min.js');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/androidstudio.css');
+
+            wp_enqueue_script('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.js', array('jquery'));
+            wp_enqueue_style('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.css');
+
+            wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'MdEditor.yt'));
         } else {
-            wp_enqueue_script('codemirror', $this->pluginUrl . '/editormd/lib/codemirror/codemirror.min.js', array('jquery'));
-            wp_enqueue_script('wp-yt-markdown', $this->pluginUrl . '/js/wp-yt-markdown.js', array('jquery', 'codemirror'));
-
-            wp_enqueue_style('codemirror', $this->pluginUrl . '/editormd/lib/codemirror/codemirror.min.css');
-            if ($this->options['theme'] !== 'default') {
-                wp_enqueue_style('codemirror-theme', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['theme'] . '.css');
-            }
-            if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
-                wp_enqueue_style('codemirror-inline', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['themeinline'] . '.css');
-            }
-            wp_enqueue_style('wp-yt-markdown', $this->pluginUrl . '/css/wp-yt-markdown.css');
+            wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/androidstudio.css');
+            wp_enqueue_style('markdown.yt', $this->pluginUrl . '/mdeditoryt/lib/markdownyt/markdownyt.min.css');
+            //if ($this->options['theme'] !== 'default') {
+            //    wp_enqueue_style('codemirror-theme', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['theme'] . '.css');
+            //}
+            //if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
+            //    wp_enqueue_style('codemirror-inline', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['themeinline'] . '.css');
+            //}
+            //wp_enqueue_style('wp-yt-markdown', $this->pluginUrl . '/css/wp-yt-markdown.css');
         }
     }
 
@@ -77,11 +85,11 @@ class WpYtMarkdown
     {
         $html = <<<HTML
 <style type="text/css">
-.CodeMirror {
+pre.hljs, pre.hljs code, .show-language {
   font-size: {$this->options[fontsize]}px;
   line-height: {$this->options[lineheight]}%;
 }
-.CodeMirror.cm-inline {
+.hljs.inline {
   font-size: {$this->options[fontsizeinline]}px;
   line-height: {$this->options[lineheightinline]}%;
 }
@@ -96,7 +104,6 @@ HTML;
         $html = <<<HTML
 <script type="text/javascript">
 var wpYtMarkdownOptions = {
-    cmModeUrl: "{$this->pluginUrl}/editormd/lib/codemirror/mode/%N/%N.js",
     highLight: {$this->options_json}
 }
 </script>
@@ -137,7 +144,6 @@ HTML;
             $html = <<<HTML
 <script type="text/javascript">
 var wpYtMarkdownOptions = {
-    cmLibUrl: "{$this->pluginUrl}/editormd/lib/",
     highLight: {$this->options_json}
 }
 </script>
