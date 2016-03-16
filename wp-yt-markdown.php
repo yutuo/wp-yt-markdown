@@ -92,6 +92,8 @@ pre.hljs, pre.hljs code, .show-language {
 .hljs.inline {
   font-size: {$this->options[fontsizeinline]}px;
   line-height: {$this->options[lineheightinline]}%;
+  margin: 0 2px;
+  border: none;
 }
 </style>
 HTML;
