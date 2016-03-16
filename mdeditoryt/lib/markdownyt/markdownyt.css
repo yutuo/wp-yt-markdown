@@ -25,6 +25,10 @@ pre.hljs {
     margin: 0;
 }
 
+pre.hljs code {
+    white-space: pre;
+}
+
 pre.line-numbers {
 	padding-left: 60px;
 	counter-reset: linenumber;

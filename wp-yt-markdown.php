@@ -60,7 +60,7 @@ class WpYtMarkdown
             wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
 
             wp_enqueue_script('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/highlight.min.js');
-            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/androidstudio.css');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/obsidian.css');
 
             wp_enqueue_script('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.js', array('jquery'));
             wp_enqueue_style('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.css');
@@ -68,7 +68,7 @@ class WpYtMarkdown
             wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'MdEditor.yt'));
         } else {
             wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
-            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/androidstudio.css');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/obsidian.css');
             wp_enqueue_style('markdown.yt', $this->pluginUrl . '/mdeditoryt/lib/markdownyt/markdownyt.min.css');
             //if ($this->options['theme'] !== 'default') {
             //    wp_enqueue_style('codemirror-theme', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['theme'] . '.css');
