@@ -14,6 +14,8 @@ var YtMarkdown = {
         MdEditorYt("mdContent", {
             width: "100%",
             height: 700,
+            linkify: false,
+            useEmoji: false,
             value: content,
             mdValueName: "post_content_filtered",
             htmlValueName: "post_content"
