@@ -10844,6 +10844,7 @@ var defaults = {
     matchWordHighlight: true,
     autoCloseBrackets: true,
     showTrailingSpace: true,
+    scrollPastEnd: true,
     value: '',
     
     delay: 300,
@@ -10857,6 +10858,21 @@ var defaults = {
 var timer;
 var MdEditorYt = function() {};
 
+MdEditorYt.mouseOrTouch = function (mouseEventType, touchEventType) {
+    mouseEventType = mouseEventType || "click";
+    touchEventType = touchEventType || "touchend";
+
+    var eventType = mouseEventType;
+
+    try {
+        document.createEvent("TouchEvent");
+        eventType = touchEventType;
+    } catch (e) {
+    }
+
+    return eventType;
+};
+
 MdEditorYt.prototype = {
     options: {},
     init: function (id, settingOptions) {
@@ -10864,7 +10880,7 @@ MdEditorYt.prototype = {
         this.options.useSourceLine = this.options.syncScrolling ? true : this.options.useSourceLine;
         // Editor的设置
         this.editor = (typeof id === "object") ? $(id) : $("#" + id);
-        this.editor.addClass('MdEditorYt');
+        this.editor.addClass('MdEditorYt CodeMirror');
         this.editor.css({
             width: (typeof this.options.width === "number") ? this.options.width + "px" : this.options.width,
             height: (typeof this.options.height === "number") ? this.options.height + "px" : this.options.height
@@ -10897,6 +10913,7 @@ MdEditorYt.prototype = {
             indentUnit: this.options.indentUnit,
             lineNumbers: this.options.lineNumbers,
             lineWrapping: this.options.lineWrapping,
+            scrollPastEnd: this.options.scrollPastEnd,
             value: this.options.value,
             // extraKeys: {
             //     "Ctrl-Q": function (cm) {
@@ -10915,9 +10932,11 @@ MdEditorYt.prototype = {
         };
         
         this.cmEditor = new CodeMirror(this.cmContainer.get(0), codeMirrorConfig);
-
+        this.setTheme(this.options.editorTheme);
+        this.cmEditorDiv = this.cmContainer.find('.CodeMirror');
+        
         // 预览高度设置
-        this.preview.height(this.cmContainer.get(0).offsetHeight);
+        this.preview.height(this.cmContainer.get(0).offsetHeight);        
         
         this.markdownYt = new MarkdownYt(this.options);
         
@@ -10925,6 +10944,12 @@ MdEditorYt.prototype = {
         this.bindChangeEvent();
 
         return this;
+    },
+    
+    setTheme: function(themeName) {
+        var oldTheme = this.cmEditor.getOption('theme');
+        this.editor.removeClass('cm-s-' + oldTheme).addClass('cm-s-' + themeName);
+        this.cmEditor.setOption("theme", themeName);
     },
 
     bindChangeEvent: function () {
@@ -10938,10 +10963,7 @@ MdEditorYt.prototype = {
             }, _this.options.delay);
         });
         
-        if (this.options.syncScrolling) {
-            this.preview.bind("scroll", function() { _this.previewScroll(_this) });
-            this.cmEditor.on("scroll", function() { _this.cmEditorScroll(_this) });
-        }
+        this.bindScrollEvent();
         
         return this;
     },
@@ -10961,16 +10983,62 @@ MdEditorYt.prototype = {
             this.htmlValue.val(htmlValue.replace(/(<\w+[^>]*) data-source-line=(['"])\d+\2([^>]*>)/g, "$1$3"));
         }
         
-        this.previewContainer.html(htmlValue);
+        try {
+            this.previewContainer.html(htmlValue);
+            var childrens = this.previewContainer.children();
+            var paddingHeight = this.cmContainer.get(0).offsetHeight;
+            if (childrens) {
+                paddingHeight -= childrens[childrens.length - 1].offsetHeight;
+            }
+            this.previewContainer.css('padding-bottom', paddingHeight + 'px')
+        }
+        catch (err) {
+            // do nothing
+        }
+        
+        
     },
     
-    isScrolling: false,    
-    previewScroll: function(_this) {
-        if (_this.isScrolling) {
+    bindScrollEvent: function() {
+        if (!this.options.syncScrolling) {
             return;
         }
-        _this.isScrolling = true;
-        console.log("previewScroll");
+        
+        var _this = this;
+
+        var cmEditorBindScroll = function () {                
+            _this.cmEditorDiv.find(".CodeMirror-scroll").bind("scroll", function() { _this.cmEditorScroll(_this) });
+        };
+
+        var cmEditorUnbindScroll = function () {
+            _this.cmEditorDiv.find(".CodeMirror-scroll").unbind("scroll");
+        };
+
+        var previewBindScroll = function () {
+            _this.preview.bind("scroll", function() { _this.previewScroll(_this) });
+        };
+
+        var previewUnbindScroll = function () {
+            _this.preview.unbind("scroll");
+        };
+
+        this.cmEditorDiv.bind({
+            mouseover: cmEditorBindScroll,
+            mouseout: cmEditorUnbindScroll,
+            touchstart: cmEditorBindScroll,
+            touchend: cmEditorUnbindScroll
+        });
+
+        this.preview.bind({
+            mouseover: previewBindScroll,
+            mouseout: previewUnbindScroll,
+            touchstart: previewBindScroll,
+            touchend: previewUnbindScroll
+        });
+    },
+    
+
+    previewScroll: function(_this) {
         var lineMarkers = _this.previewContainer.find('[data-source-line]');
         
         function getPreviewScroll() {
@@ -10986,61 +11054,60 @@ MdEditorYt.prototype = {
                     break;
                 }
             }
-            var lastLine = 0;
-            var nextLine = _this.previewContainer.outerHeight() - _this.preview.outerHeight();
+            
+            var lastLineHeight = 0;
+            var nextLineHeight = _this.previewContainer.outerHeight() - _this.preview.outerHeight();
             if (lastMarker !== false) {
-                lastLine = lineMarkers[lastMarker].offsetTop;
+                lastLineHeight = lineMarkers[lastMarker].offsetTop;
             }
             if (nextMarker !== false) {
-                nextLine = lineMarkers[nextMarker].offsetTop;
+                nextLineHeight = lineMarkers[nextMarker].offsetTop;
             }
             var percentage = 0;
-            if (nextLine !== lastLine) {
-                percentage = (scroll - lastLine) / (nextLine - lastLine);
+            if (nextLineHeight !== lastLineHeight) {
+                percentage = (scroll - lastLineHeight) / (nextLineHeight - lastLineHeight);
             }
 
             return { lastMarker: lastMarker, nextMarker: nextMarker, percentage: percentage };
         }
-        
+
         function setEditorScroll(previewScroll) {
             var lines = [];
             lineMarkers.each(function() {
                 lines.push($(this).data('source-line'));
             });
 
-            var pLines = [];
-            var pLine = 0;
+            var pLineHeights = [];
+            var pLineHeight = 0;
             for (var i = 0; i < lines[lines.length - 1]; i++) {
                 if ($.inArray(i + 1, lines) !== -1) {
-                    pLines.push(pLine);
+                    pLineHeights.push(pLineHeight);
                 }
-                pLine +=  _this.cmEditor.getLineHandle(i).height / _this.cmEditor.display.cachedTextHeight;
+                pLineHeight +=  _this.cmEditor.getLineHandle(i).height;
             }
             
-            var lastLine = 0;
-            var nextLine = _this.cmEditor.lineCount() - 1;
+            var lastLineHeight = 0;
+            var nextLineHeight = 0;
             if (previewScroll.lastMarker !== false) {
-                lastLine = pLines[previewScroll.lastMarker]
+                lastLineHeight = pLineHeights[previewScroll.lastMarker]
             }
             if (previewScroll.nextMarker !== false) {
-                nextLine = pLines[previewScroll.nextMarker]
+                nextLineHeight = pLineHeights[previewScroll.nextMarker]
             }
-            var scrollTop = ((nextLine - lastLine) * previewScroll.percentage + lastLine) * _this.cmEditor.display.cachedTextHeight;
+            else {
+                for (var i = 0; i < _this.cmEditor.lineCount(); i++) {
+                    nextLineHeight += _this.cmEditor.getLineHandle(i).height;
+                }
+            }
+            var scrollTop = ((nextLineHeight - lastLineHeight) * previewScroll.percentage + lastLineHeight);
             _this.cmEditor.scrollTo(0, scrollTop);
         }
         
         setEditorScroll(getPreviewScroll());
-        
-        setTimeout(function() { _this.isScrolling = false; }, 30);
     },
     
     cmEditorScroll: function(_this) {
-        if (_this.isScrolling) {
-            return;
-        }
-        _this.isScrolling = true;
-        
-        console.log("cmEditorScroll");
+   
         var lineMarkers = _this.previewContainer.find('[data-source-line]');
         
         function getEditorScroll() {
@@ -11049,37 +11116,43 @@ MdEditorYt.prototype = {
                 lines.push($(this).data('source-line'));
             });
 
-            var pLines = [];
-            var pLine = 0;
+            var pLineHeights = [];
+            var pLineHeight = 0;
             for (var i = 0; i < lines[lines.length - 1]; i++) {
                 if ($.inArray(i + 1, lines) !== -1) {
-                    pLines.push(pLine);
+                    pLineHeights.push(pLineHeight);
                 }
-                pLine +=  _this.cmEditor.getLineHandle(i).height / _this.cmEditor.display.cachedTextHeight;
+                pLineHeight +=  _this.cmEditor.getLineHandle(i).height;
             }
 
-            var currentLine = _this.cmEditor.getScrollInfo().top / _this.cmEditor.display.cachedTextHeight;
+            var currentLineHeight = _this.cmEditor.getScrollInfo().top;
             var lastMarker = false;
             var nextMarker = false;
-            for (var i = 0; i < pLines.length; i++) {
-                if (pLines[i] < currentLine) {
+            for (var i = 0; i < pLineHeights.length; i++) {
+                if (pLineHeights[i] < currentLineHeight) {
                     lastMarker = i;
                 } else {
                     nextMarker = i;
                     break;
                 }
-            } 
-            var lastLine = 0;
-            var nextLine = _this.cmEditor.lineCount() - 1; 
+            }
+            
+            var lastLineHeight = 0;
+            var nextLineHeight = 0;
             if (lastMarker !== false) {
-                lastLine = pLines[lastMarker];
+                lastLineHeight = pLineHeights[lastMarker];
             }
             if (nextMarker !== false) {
-                nextLine = pLines[nextMarker];
-            } 
+                nextLineHeight = pLineHeights[nextMarker];
+            }
+            else {
+                for (var i = 0; i < _this.cmEditor.lineCount(); i++) {
+                    nextLineHeight += _this.cmEditor.getLineHandle(i).height;
+                }
+            }
             var percentage = 0;
-            if (nextLine !== lastLine) {
-                percentage = (currentLine - lastLine) / (nextLine - lastLine);
+            if (nextLineHeight !== lastLineHeight) {
+                percentage = (currentLineHeight - lastLineHeight) / (nextLineHeight - lastLineHeight);
             }
             
             return { lastMarker: lines[lastMarker], nextMarker: lines[nextMarker], percentage: percentage };
@@ -11099,10 +11172,8 @@ MdEditorYt.prototype = {
         }
         
         setPreviewScroll(getEditorScroll());
-        
-        setTimeout(function() { _this.isScrolling = false; }, 30);
     },    
-} 
+}
 
 module.exports = function(id, settingOptions) {
     var mdEditorYt = new MdEditorYt();
