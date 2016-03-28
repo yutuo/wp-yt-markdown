@@ -10882,7 +10882,7 @@ MdEditorYt.prototype = {
         this.options.useSourceLine = this.options.syncScrolling ? true : this.options.useSourceLine;
         // Editor的设置
         this.editor = (typeof id === "object") ? $(id) : $("#" + id);
-        this.editor.addClass('MdEditorYt CodeMirror');
+        this.editor.addClass('MdEditorYt');
         this.editor.css({
             width: (typeof this.options.width === "number") ? this.options.width + "px" : this.options.width,
             height: (typeof this.options.height === "number") ? this.options.height + "px" : this.options.height
@@ -10951,7 +10951,7 @@ MdEditorYt.prototype = {
     
     setTheme: function(themeName) {
         var oldTheme = this.cmEditor.getOption('theme');
-        this.cmContainer.removeClass('cm-s-' + oldTheme).addClass('cm-s-' + themeName);
+        this.preview.removeClass('cm-s-' + oldTheme).addClass('cm-s-' + themeName);
         this.cmEditor.setOption("theme", themeName);
         return this;
     },
