@@ -11,7 +11,7 @@ var YtMarkdown = {
         editContainer.hide();
         markdownContainer.show();
 
-        MdEditorYt("mdContent", {
+        var mdEditorYt = MdEditorYt("mdContent", {
             width: "100%",
             height: 700,
             linkify: false,
@@ -20,6 +20,7 @@ var YtMarkdown = {
             mdValueName: "post_content_filtered",
             htmlValueName: "post_content"
         });
+        mdEditorYt.setTheme(options.highLight.cmtheme);
     }
 };
 

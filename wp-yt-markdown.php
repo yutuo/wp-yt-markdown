@@ -60,7 +60,7 @@ class WpYtMarkdown
             wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
 
             wp_enqueue_script('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/highlight.min.js');
-            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/obsidian.css');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/' . $this->options['hltheme'] . '.css');
 
             wp_enqueue_script('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.js', array('jquery'));
             wp_enqueue_style('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.css');
@@ -68,36 +68,15 @@ class WpYtMarkdown
             wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'MdEditor.yt'));
         } else {
             wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
-            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/obsidian.css');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/' . $this->options['hltheme'] . '.css');
             wp_enqueue_style('markdown.yt', $this->pluginUrl . '/mdeditoryt/lib/markdownyt/markdownyt.min.css');
-            //if ($this->options['theme'] !== 'default') {
-            //    wp_enqueue_style('codemirror-theme', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['theme'] . '.css');
-            //}
-            //if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
-            //    wp_enqueue_style('codemirror-inline', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['themeinline'] . '.css');
-            //}
-            //wp_enqueue_style('wp-yt-markdown', $this->pluginUrl . '/css/wp-yt-markdown.css');
         }
     }
 
     /** 在Wordpress头部添加CSS */
     function insertHeadHtml()
     {
-        $html = <<<HTML
-<style type="text/css">
-pre.hljs, pre.hljs code, .show-language {
-  font-size: {$this->options[fontsize]}px;
-  line-height: {$this->options[lineheight]}%;
-}
-.hljs.inline {
-  font-size: {$this->options[fontsizeinline]}px;
-  line-height: {$this->options[lineheightinline]}%;
-  margin: 0 2px;
-  border: none;
-}
-</style>
-HTML;
-        echo $html;
+        
     }
 
     /** 在Wordpress尾部添加JavaScript */

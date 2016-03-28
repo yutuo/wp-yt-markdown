@@ -30,49 +30,18 @@ if ($_POST[WpYtMarkdownConfig::CONFIG_OPTIONS_KEY]) {
             <h3><?php echo __('System Settings', 'wp_ymd') ?></h3>
             <p><?php echo __('Please enter your system config.', 'wp_ymd') ?></p>
 
-            <h4><?php echo __('Block Code HighLight Setting', 'wp_ymd') ?></h4>
-
             <table class="form-table">
                 <tr>
-                    <td scope="row"><?php echo __('Code theme', 'wp_ymd') ?></td>
-                    <td><select name="wp_ymd_options[theme]" id="theme">
-                            <?php $this->optionsHtml($this->options['theme'], WpYtMarkdownConfig::$THEMES)?>
+                    <td scope="row"><?php echo __('MdEditor.yt(CodeMirror) theme', 'wp_ymd') ?></td>
+                    <td><select name="wp_ymd_options[cmtheme]" id="cmtheme">
+                            <?php $this->optionsHtml($this->options['cmtheme'], WpYtMarkdownConfig::$CM_THEMES)?>
                     </select></td>
                 </tr>
                 <tr>
-                    <td scope="row"><?php echo __('Line height', 'wp_ymd') ?></td>
-                    <td><select name="wp_ymd_options[lineheight]" id="lineheight">
-                            <?php $this->optionsHtml($this->options['lineheight'], WpYtMarkdownConfig::$LINE_HEIGHT)?>
-                        </select>%</td>
-                </tr>
-                <tr>
-                    <td scope="row"><?php echo __('Font size', 'wp_ymd') ?></td>
-                    <td><select name="wp_ymd_options[fontsize]" id="fontsize">
-                            <?php $this->optionsHtml($this->options['fontsize'], WpYtMarkdownConfig::$FONT_SIZE)?>
-                        </select>px</td>
-                </tr>
-            </table>
-
-            <h4><?php echo __('Inline Code HighLight Setting', 'wp_ymd') ?></h4>
-
-            <table class="form-table">
-                <tr>
-                    <td scope="row"><?php echo __('Code theme', 'wp_ymd') ?></td>
-                    <td><select name="wp_ymd_options[themeinline]" id="themeinline">
-                            <?php $this->optionsHtml($this->options['themeinline'], WpYtMarkdownConfig::$THEMES)?>
+                    <td scope="row"><?php echo __('HighLight Code theme', 'wp_ymd') ?></td>
+                    <td><select name="wp_ymd_options[hltheme]" id="hltheme">
+                            <?php $this->optionsHtml($this->options['hltheme'], WpYtMarkdownConfig::$HL_THEMES)?>
                         </select></td>
-                </tr>
-                <tr>
-                    <td scope="row"><?php echo __('Line height', 'wp_ymd') ?></td>
-                    <td><select name="wp_ymd_options[lineheightinline]" id="lineheightinline">
-                            <?php $this->optionsHtml($this->options['lineheightinline'], WpYtMarkdownConfig::$LINE_HEIGHT)?>
-                        </select>%</td>
-                </tr>
-                <tr>
-                    <td scope="row"><?php echo __('Font size', 'wp_ymd') ?></td>
-                    <td><select name="wp_ymd_options[fontsizeinline]" id="fontsizeinline">
-                            <?php $this->optionsHtml($this->options['fontsizeinline'], WpYtMarkdownConfig::$FONT_SIZE)?>
-                        </select>px</td>
                 </tr>
             </table>
 
