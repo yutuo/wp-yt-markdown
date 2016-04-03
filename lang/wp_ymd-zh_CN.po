@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Yt Markdown\n"
-"POT-Creation-Date: 2016-03-06 23:56+0900\n"
-"PO-Revision-Date: 2016-03-07 00:06+0900\n"
+"POT-Creation-Date: 2016-04-03 16:45+0900\n"
+"PO-Revision-Date: 2016-04-03 16:46+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: inc/wp_yt_markdown_setting.php:26 wp-yt-markdown.php:110
+#: inc/wp_yt_markdown_setting.php:26 wp-yt-markdown.php:98
 msgid "Wp Yt Markdown"
 msgstr ""
 
@@ -38,35 +38,23 @@ msgstr "系统设置"
 msgid "Please enter your system config."
 msgstr "请输入你的系统设置。"
 
-#: inc/wp_yt_markdown_setting.php:33
-msgid "Block Code HighLight Setting"
-msgstr "块代码高亮设置"
+#: inc/wp_yt_markdown_setting.php:35
+msgid "MdEditor.yt(CodeMirror) theme"
+msgstr "MdEditor.yt(CodeMirror)显示样式"
 
-#: inc/wp_yt_markdown_setting.php:37 inc/wp_yt_markdown_setting.php:60
-msgid "Code theme"
-msgstr "代码样式"
+#: inc/wp_yt_markdown_setting.php:41
+msgid "HighLight Code theme"
+msgstr "代码高亮(highlight.js)显示样式"
 
-#: inc/wp_yt_markdown_setting.php:43 inc/wp_yt_markdown_setting.php:66
-msgid "Line height"
-msgstr "行高"
-
-#: inc/wp_yt_markdown_setting.php:49 inc/wp_yt_markdown_setting.php:72
-msgid "Font size"
-msgstr "字体大小"
-
-#: inc/wp_yt_markdown_setting.php:56
-msgid "Inline Code HighLight Setting"
-msgstr "单行代码高亮样式"
-
-#: inc/wp_yt_markdown_setting.php:81
+#: inc/wp_yt_markdown_setting.php:50
 msgid "Save Changes"
 msgstr "保存修改"
 
-#: wp-yt-markdown.php:120
+#: wp-yt-markdown.php:108
 msgid "Settings"
 msgstr "设置"
 
-#: wp-yt-markdown.php:167
+#: wp-yt-markdown.php:160
 msgid "Default"
 msgstr "默认"
 
@@ -93,3 +81,18 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://yutuo.net"
 msgstr ""
+
+#~ msgid "Block Code HighLight Setting"
+#~ msgstr "块代码高亮设置"
+
+#~ msgid "Code theme"
+#~ msgstr "代码样式"
+
+#~ msgid "Line height"
+#~ msgstr "行高"
+
+#~ msgid "Font size"
+#~ msgstr "字体大小"
+
+#~ msgid "Inline Code HighLight Setting"
+#~ msgstr "单行代码高亮样式"
