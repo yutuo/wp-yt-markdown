@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Yt Markdown\n"
-"POT-Creation-Date: 2016-03-06 19:02+0900\n"
+"POT-Creation-Date: 2016-04-03 16:45+0900\n"
 "PO-Revision-Date: 2016-03-06 19:01+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: inc/wp_yt_markdown_setting.php:26 wp-yt-markdown.php:109
+#: inc/wp_yt_markdown_setting.php:26 wp-yt-markdown.php:98
 msgid "Wp Yt Markdown"
 msgstr ""
 
@@ -38,35 +38,23 @@ msgstr ""
 msgid "Please enter your system config."
 msgstr ""
 
-#: inc/wp_yt_markdown_setting.php:33
-msgid "Block Code HighLight Setting"
+#: inc/wp_yt_markdown_setting.php:35
+msgid "MdEditor.yt(CodeMirror) theme"
 msgstr ""
 
-#: inc/wp_yt_markdown_setting.php:37 inc/wp_yt_markdown_setting.php:60
-msgid "Code theme"
+#: inc/wp_yt_markdown_setting.php:41
+msgid "HighLight Code theme"
 msgstr ""
 
-#: inc/wp_yt_markdown_setting.php:43 inc/wp_yt_markdown_setting.php:66
-msgid "Line height"
-msgstr ""
-
-#: inc/wp_yt_markdown_setting.php:49 inc/wp_yt_markdown_setting.php:72
-msgid "Font size"
-msgstr ""
-
-#: inc/wp_yt_markdown_setting.php:56
-msgid "Inline Code HighLight Setting"
-msgstr ""
-
-#: inc/wp_yt_markdown_setting.php:81
+#: inc/wp_yt_markdown_setting.php:50
 msgid "Save Changes"
 msgstr ""
 
-#: wp-yt-markdown.php:119
+#: wp-yt-markdown.php:108
 msgid "Settings"
 msgstr ""
 
-#: wp-yt-markdown.php:166
+#: wp-yt-markdown.php:160
 msgid "Default"
 msgstr ""
 

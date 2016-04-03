@@ -3,7 +3,7 @@
  * Plugin Name: WP Yt Markdown
  * Plugin URI: https://yutuo.net/archives/4435fbf59f6928c5.html
  * Description: This plugin is Markdown editor based on <a href="https://pandao.github.io/editor.md/">editor.md</a>.
- * Version: 0.0.3
+ * Version: 0.2.0
  * Author: yutuo
  * Author URI: http://yutuo.net
  * Text Domain: wp_ymd
@@ -53,41 +53,30 @@ class WpYtMarkdown
 
         wp_enqueue_script('jquery');
         if (is_admin()) {
-            wp_enqueue_script('editor.md', $this->pluginUrl . '/editormd/editormd.min.js', array('jquery'));
-            wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'editor.md'));
+            wp_enqueue_script('codemirror', $this->pluginUrl . '/mdeditoryt/lib/codemirror/codemirror.min.js');
+            wp_enqueue_style('codemirror', $this->pluginUrl . '/mdeditoryt/lib/codemirror/codemirror.min.css');
 
-            wp_enqueue_style('editor.md', $this->pluginUrl . '/editormd/css/editormd.min.css');
+            wp_enqueue_script('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.js');
+            wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
+
+            wp_enqueue_script('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/highlight.min.js');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/' . $this->options['hltheme'] . '.css');
+
+            wp_enqueue_script('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.js', array('jquery'));
+            wp_enqueue_style('MdEditor.yt', $this->pluginUrl . '/mdeditoryt/dist/mdeditoryt.min.css');
+
+            wp_enqueue_script('wp-yt-markdown-admin', $this->pluginUrl . '/js/wp-yt-markdown-admin.js', array('jquery', 'MdEditor.yt'));
         } else {
-            wp_enqueue_script('codemirror', $this->pluginUrl . '/editormd/lib/codemirror/codemirror.min.js', array('jquery'));
-            wp_enqueue_script('wp-yt-markdown', $this->pluginUrl . '/js/wp-yt-markdown.js', array('jquery', 'codemirror'));
-
-            wp_enqueue_style('codemirror', $this->pluginUrl . '/editormd/lib/codemirror/codemirror.min.css');
-            if ($this->options['theme'] !== 'default') {
-                wp_enqueue_style('codemirror-theme', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['theme'] . '.css');
-            }
-            if ($this->options['themeinline'] !== 'default' && $this->options['themeinline'] !== $this->options['theme']) {
-                wp_enqueue_style('codemirror-inline', $this->pluginUrl . '/editormd/lib/codemirror/theme/' . $this->options['themeinline'] . '.css');
-            }
-            wp_enqueue_style('wp-yt-markdown', $this->pluginUrl . '/css/wp-yt-markdown.css');
+            wp_enqueue_style('katex', $this->pluginUrl . '/mdeditoryt/lib/katex/katex.min.css');
+            wp_enqueue_style('highlightjs', $this->pluginUrl . '/mdeditoryt/lib/highlightjs/styles/' . $this->options['hltheme'] . '.css');
+            wp_enqueue_style('markdown.yt', $this->pluginUrl . '/mdeditoryt/lib/markdownyt/markdownyt.min.css');
         }
     }
 
     /** 在Wordpress头部添加CSS */
     function insertHeadHtml()
     {
-        $html = <<<HTML
-<style type="text/css">
-.CodeMirror {
-  font-size: {$this->options[fontsize]}px;
-  line-height: {$this->options[lineheight]}%;
-}
-.CodeMirror.cm-inline {
-  font-size: {$this->options[fontsizeinline]}px;
-  line-height: {$this->options[lineheightinline]}%;
-}
-</style>
-HTML;
-        echo $html;
+        
     }
 
     /** 在Wordpress尾部添加JavaScript */
@@ -96,7 +85,6 @@ HTML;
         $html = <<<HTML
 <script type="text/javascript">
 var wpYtMarkdownOptions = {
-    cmModeUrl: "{$this->pluginUrl}/editormd/lib/codemirror/mode/%N/%N.js",
     highLight: {$this->options_json}
 }
 </script>
@@ -135,9 +123,14 @@ HTML;
         global $pagenow;
         if ($pagenow == 'post.php' || $pagenow == 'post-new.php') {
             $html = <<<HTML
+<style type="text/css">
+pre.hljs code {
+    margin: initial;
+    padding: initial;
+}
+</style>
 <script type="text/javascript">
 var wpYtMarkdownOptions = {
-    cmLibUrl: "{$this->pluginUrl}/editormd/lib/",
     highLight: {$this->options_json}
 }
 </script>

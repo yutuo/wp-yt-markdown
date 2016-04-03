@@ -11,20 +11,16 @@ var YtMarkdown = {
         editContainer.hide();
         markdownContainer.show();
 
-        editormd("mdContent", {
+        var mdEditorYt = MdEditorYt("mdContent", {
             width: "100%",
             height: 700,
-            path: options.cmLibUrl,
-            markdown: content,
-            name: "post_content_filtered",
-            htmlCodeName: "post_content",
-            saveHTMLToTextarea: true,
-            htmlDecode: true,
-            highlightConfig: {
-                theme: options.highLight.theme,
-                themeinline: options.highLight.themeinline
-            }
+            linkify: false,
+            useEmoji: false,
+            value: content,
+            mdValueName: "post_content_filtered",
+            htmlValueName: "post_content"
         });
+        mdEditorYt.setTheme(options.highLight.cmtheme);
     }
 };
 
