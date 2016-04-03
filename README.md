@@ -3,11 +3,9 @@ wp-yt-markdown
 
 #### Description
 
-This plugin is Markdown editor based on <a href="https://pandao.github.io/editor.md/">editor.md</a>.
-You can edit post with Markdown when you use this plugin, and high light code with CodeMirror.
+This plugin is Markdown editor based on <a href="https://github.com/yutuo/mdeditor.yt">mdeditor.yt</a>.
 
-这个插件是一个基于<a href="https://pandao.github.io/editor.md/">editor.md</a>的Markdown编辑器。
-如果使用本插件，你能用Markdown来编辑博客，并用CodeMirror来高亮代码。
+这个插件是一个基于<a href="https://github.com/yutuo/mdeditor.yt">mdeditor.yt</a>的Markdown编辑器。
 
 #### Installation
 
